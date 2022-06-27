@@ -4,10 +4,10 @@
 		<title>Rotating touch component</title>
 		<style>
 				#input-container{
-						width:150px;
+						width:148px;
 						height:50px;
 						position:relative;
-
+						border-radius:33px;
 					}	
 				#onoff{
 					position:absolute;	
@@ -15,29 +15,48 @@
 					height:100%;
 				
 					border:2px solid black;
+					border-radius:30px;
 					appearance:none;
 					outline:none;
-					transition:all 500ms ease-in-out;
-
+					transition:all 700ms ease-in-out;
+					margin:0;
 				}
 				#circle{
-					position:relative;
-					width:2rem;
-					height:2rem;
-					transform:translateY(-50%);
-					top:35%;
-					
+					position:absolute;
+					width:45px;
+					height:45px;
+					top:2px;
 					background-color:black;
+					border-radius:50%;
+					
+					display:grid;
+					place-items:center;
+					transition:all 650ms ease-in-out;
+					pointer-events:none;
 				}
 				#circle:before{
 					content:"ON";
-					color:white;
+					color:white;			
+				}
+
+				#onoff:checked{
+					background-color:black;
+				}
+				#onoff:checked ~ #circle{
+					transform: translateX(100px) rotate(360deg);
+					background-color:white;
 					
+				}
+				#onoff:checked ~ #circle:before{
+					content:"OFF";
+					color:black
+
 				}
 				#container{
 					height:100vh;
 					display:grid;
 					place-items:center;
+
 				}
 
 
