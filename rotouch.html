@@ -5,7 +5,7 @@
 		<style>
 				#input-container{
 						width:148px;
-						height:50px;
+						height:52px;
 						position:relative;
 						border-radius:33px;
 					}	
@@ -13,19 +13,20 @@
 					position:absolute;	
 					width:100%;
 					height:100%;
-				
 					border:2px solid black;
 					border-radius:30px;
 					appearance:none;
 					outline:none;
 					transition:all 700ms ease-in-out;
 					margin:0;
+					
 				}
 				#circle{
 					position:absolute;
 					width:45px;
 					height:45px;
-					top:2px;
+					top:3px;
+					left:4px;
 					background-color:black;
 					border-radius:50%;
 					
@@ -43,8 +44,8 @@
 					background-color:black;
 				}
 				#onoff:checked ~ #circle{
-					transform: translateX(100px) rotate(360deg);
-					background-color:white;
+					transform: translateX(97px) rotate(360deg);
+					background-color: white;
 					
 				}
 				#onoff:checked ~ #circle:before{
@@ -58,6 +59,7 @@
 					place-items:center;
 
 				}
+				
 
 
 		</style>
@@ -68,6 +70,8 @@
 					<input type="checkbox" name="onoff" id="onoff">
 					<span id="circle"></span>
 			</div></div>
-							
+			
+
+					
 	</body>
-	</html>
+	</html>   
