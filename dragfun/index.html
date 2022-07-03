@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+		<title>Drag practice</title>
+
+		<style type="text/css" media="screen">
+			body{
+				display:grid;
+				height:100vh;
+				place-items:center;
+				justify-conter:center;
+
+			}	
+
+			#container{
+				width:40rem;
+				height:30rem;
+				background-color:#1111;
+				border:2px dotted black;
+					}
+			label{
+				color:green;
+				position:absolute;
+				z-index:1;
+				left:32%;
+				top:32%;
+			}
+			#preview{
+				
+				position:relative;
+				width:100%;
+				height:100%;
+				background-color:#1111;
+			}
+			#preview::before{
+				content:"click or drag images";
+				color:black;
+			}
+			#preview:hover::before{
+				opacity:0.5;
+				}
+
+		</style>
+	</head>
+
+
+	<body>
+		<div id="container">
+			
+			<label for="imageInput">
+				choose image
+				<input type="file" id="imageInput"  accept="image/*" multiple hidden/>
+			</label>
+			<div id="preview"></div>
+			
+		</div>
+
+
+		<script charset="utf-8">
+
+			let fileInput= document.getElementById('imageInput');
+			let divSelector = document.getElementById("container");
+			let preview = document.getElementById("preview");
+
+			divSelector.addEventListener("click",()=>
+			fileInput.click());
+
+			function preventDefault(event){
+				event.preventDefault();
+				event.stopPropagation();
+			}
+			divSelector.addEventListener("dragenter",preventDefault);
+			divSelector.addEventListener("dragleave",preventDefault);
+			divSelector.addEventListener("dragover",preventDefault);
+			divSelector.addEventListener("drop",preventDefault);
+
+
+			divSelector.addEventListener("drop",(event)=>{
+					let files = event.dataTransfer.files;
+					checkout(files);
+			});
+			fileInput.addEventListener("change",()=>{
+					let files = fileInput.files;
+					checkout(files);
+
+			});
+
+			function checkout(files){
+				fileTypes= ['image/jpeg','image/jpg','image/png','image/gif',]
+				for(let i = 0; i<files.length; i++){
+					let imageType = files[i].type;
+					if(fileTypes.includes(imageType)){
+						loadImage(files[i]);
+				}}
+
+				}
+
+			function loadImage(image){
+				preview.style.display="block";
+				let figure = document.createElement("figure");
+				let img = document.createElement("img");
+
+				figure.append(img);
+				preview.append(figure);
+
+				let fileReader = new FileReader();
+
+				fileReader.onload = (event)=>{
+					img.src = event.target.result;
+					console.log(img)
+				};
+
+				fileReader.readAsDataURL(image);
+			}
+
+		</script>
+	</body>
+</html>
